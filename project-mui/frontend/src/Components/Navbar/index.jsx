@@ -1,4 +1,4 @@
-import  React, { useState } from 'react';
+import React, { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -13,7 +13,11 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from 'react-router-dom';
-const pages = ['Home', 'Categories', 'Products','Login-Register'];
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { Badge } from '@mui/base/Badge';
+
+
+const pages = ['Home', 'Categories', 'Products', 'Login-Register'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Navbar() {
@@ -36,7 +40,7 @@ function Navbar() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" style={{ background: '#F57D1F' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -90,10 +94,10 @@ function Navbar() {
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">
-                    <Link to={page==='Home'?'/':`/${page.toLowerCase()}`}>
-                    {page}
+                    <Link style={{ color: 'black', textDecoration: 'none' }} to={page === 'Home' ? '/' : `/${page.toLowerCase()}`}>
+                      {page}
                     </Link>
-                    </Typography>
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -124,12 +128,16 @@ function Navbar() {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                <Link to={page==='Home'?'/':`/${page.toLowerCase()}`}>{page}</Link>
+                <Link style={{ color: 'white', textDecoration: 'none' }} to={page === 'Home' ? '/' : `/${page.toLowerCase()}`}>{page}</Link>
               </Button>
             ))}
           </Box>
+          <Box >
+            <Badge badgeContent={1} color='secondary'>
+              <ShoppingCartIcon/>
+            </Badge>
+          </Box>
 
-        
         </Toolbar>
       </Container>
     </AppBar>

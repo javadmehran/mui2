@@ -9,7 +9,10 @@ import Categories from './Pages/Categories'
 import Products from './Pages/Products'
 import Cart from './Pages/Cart'
 import LoginRegister from './Pages/LoginRegister'
+import './App.css'
+import {useSelector}from 'react-redux'
 export default function App() {
+  const {token}=useSelector(state=>state.auth)
   return (
     <>
 <Navbar/>
