@@ -41,11 +41,11 @@ export default function Home() {
           margin: "80px auto",
         }}
       >
-        <Typography variant="h2"  textAlign={"center"}>
+        <Typography my={4} variant="h2"  textAlign={"center"}>
           Discount Product
         </Typography>
         <Swiper
-          style={{ width: "100%", height: "80%",paddingLeft:'40px' }}
+          style={{ width: "100%", height: "80%",paddingLeft:'60px' }}
           slidesPerView={4}
           spaceBetween={10}
           pagination={{
