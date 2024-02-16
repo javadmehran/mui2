@@ -94,7 +94,7 @@ function Navbar() {
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">
-                    <Link style={{ color: 'black', textDecoration: 'none' }} to={page === 'Home' ? '/' : `/${page.toLowerCase()}`}>
+                    <Link style={{ color: 'black', textDecoration: 'none' }} to={page === 'Home' ? '/' :page==='Products'?'/products/all-category':`${page.toLowerCase()}`}>
                       {page}
                     </Link>
                   </Typography>
@@ -128,7 +128,7 @@ function Navbar() {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                <Link style={{ color: 'white', textDecoration: 'none' }} to={page === 'Home' ? '/' : `/${page.toLowerCase()}`}>{page}</Link>
+                <Link style={{ color: 'white', textDecoration: 'none' }} to={page === 'Home' ? '/' :page==='Products'?'/products/all-category':`${page.toLowerCase()}`}>{page}</Link>
               </Button>
             ))}
           </Box>
