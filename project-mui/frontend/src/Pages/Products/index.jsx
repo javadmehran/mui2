@@ -29,7 +29,7 @@ export function MediaCard({ img, name, price, id, desc }) {
                   </CardContent>
                   <CardActions>
                         <Button size="small">{price}</Button>
-                        <Button size="small"><Link to={`/product-details/${id}/${name}`}>Learn More</Link></Button>
+                        <Button size="small"><Link to={`/product-details/${id}/${name.split(' ').join('-')}`}>Learn More</Link></Button>
                   </CardActions>
             </Card>
       );
@@ -64,7 +64,8 @@ export default function Products() {
                   }
             })();
       }, [sort, price]);
-      const items = products?.map((e, index) => <MediaCard key={index} img={process.env.REACT_APP_BASE_URL + e.attributes?.images?.data[0]?.attributes?.url}
+      const items = products?.map((e, index) => <MediaCard key={index} img={process.env.REACT_APP_BASE_URL +
+       e.attributes?.images?.data[0]?.attributes?.url}
             name={e?.attributes?.name}
             desc={e?.attributes?.description}
             id={e?.id}

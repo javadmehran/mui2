@@ -15,7 +15,11 @@ export default function Categories() {
     })();
   }, [])
   const items=categories?.map((e,index)=><CategoryCard key={index} img={process.env.REACT_APP_BASE_URL +
-   e.attributes?.images?.data[0]?.attributes?.url}>
+   e.attributes?.images?.data[0]?.attributes?.url}
+   name={ e.attributes?.name}
+   id={e?.id}
+
+   >
 
    </CategoryCard>)
   return (
