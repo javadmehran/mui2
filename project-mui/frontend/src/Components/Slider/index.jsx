@@ -24,7 +24,7 @@ export default function Slider() {
     })();
   }, []);
 
-  const sliderItems=slide?.map((e,index)=><SwiperSlide ><img src={process.env.REACT_APP_BASE_URL+e?.attributes?.image?.data?.attributes?.url} style={{width:'100%',height:'100%'}} alt=""/></SwiperSlide>)
+  const sliderItems=slide?.map((e,index)=><SwiperSlide key={index}><img  src={process.env.REACT_APP_BASE_URL+e?.attributes?.image?.data?.attributes?.url} style={{width:'100%',height:'100%'}} alt=""/></SwiperSlide>)
   return (
    <Box sx={{height:'80vh'}}>
 <Swiper modules={[Navigation,Pagination,Autoplay]} navigation style={{height:'100%',width:'100%'}}

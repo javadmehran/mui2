@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route,Routes,Navigate } from 'react-router-dom'
+import {Route,Routes,Navigate, useLocation ,useNavigate} from 'react-router-dom'
 import Navbar from './Components/Navbar'
 import Footer from './Components/Footer'
 import Home from './Pages/Home'
@@ -18,11 +18,11 @@ export default function App() {
 <Navbar/>
 <Routes>
   <Route exact path='/' element={<Home/>}/>
-  <Route path='/product-details/:id' element={<ProductDetails/>}></Route>
-  <Route path='/Categories' element={<Categories/>}></Route>
-  <Route path='/products/:categoryId' element={<Products/>}></Route>
-  <Route path='/cart' element={<Cart/>}></Route>
-  <Route path='/login-register' element={<LoginRegister/>}></Route>
+  <Route path='/product-details/:id/:name/' element={<ProductDetails/>}/>
+  <Route path='/Categories' element={<Categories/>}/>
+  <Route path='/products/:categoryId' element={<Products/>}/>
+  <Route path='/cart' element={<Cart/>}/>
+  <Route path='/login-register' element={<LoginRegister/>}/>
    <Route path="*" element={<NotFound/>} />
 
 </Routes>

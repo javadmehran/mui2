@@ -7,17 +7,16 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Badge } from '@mui/base/Badge';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../Store/Slices/AuthSlice';
 
-
-const pages = ['Home', 'Categories', 'Products', 'Login-Register'];
+const pages = ['Home', 'Categories', 'Products'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Navbar() {
@@ -39,6 +38,9 @@ function Navbar() {
     setAnchorElUser(null);
   };
 
+const cartCount=useSelector(state=>state.cart.list).length
+const {token}=useSelector((state=>state.auth))
+const dispatch=useDispatch()
   return (
     <AppBar position="static" style={{ background: '#F57D1F' }}>
       <Container maxWidth="xl">
@@ -100,6 +102,18 @@ function Navbar() {
                   </Typography>
                 </MenuItem>
               ))}
+{!token? <MenuItem key={'login-register'} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">
+                    <Link style={{ color: 'black', textDecoration: 'none' }} to={`/login-register`}>
+                     Login-Register
+                    </Link>
+                  </Typography>
+                </MenuItem>: <MenuItem key={'logout'} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center" onClick={()=>dispatch(logout())}>
+                   Logout
+                  </Typography>
+                </MenuItem>}
+
             </Menu>
           </Box>
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
@@ -131,12 +145,30 @@ function Navbar() {
                 <Link style={{ color: 'white', textDecoration: 'none' }} to={page === 'Home' ? '/' :page==='Products'?'/products/all-category':`${page.toLowerCase()}`}>{page}</Link>
               </Button>
             ))}
+
+{!token?<Button
+                key={'login-register'}
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                <Link style={{ color: 'white', textDecoration: 'none' }} to={'login-register'}>Login-Register</Link>
+              </Button>:      <Button
+                key={'logout'}
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                <Typography style={{ color: 'white', textDecoration: 'none' }} onClick={()=>dispatch(logout())} >Logout</Typography>
+              </Button>}
+            
           </Box>
+          <Link to={'/cart'}>
           <Box >
-            <Badge badgeContent={1} color='secondary'>
-              <ShoppingCartIcon/>
+            <Badge badgeContent={cartCount} color='secondary'>
+              <ShoppingCartIcon sx={{color:'white'}}/>
             </Badge>
           </Box>
+          </Link>
+          
 
         </Toolbar>
       </Container>
